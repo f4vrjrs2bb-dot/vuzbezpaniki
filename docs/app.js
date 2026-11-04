@@ -148,3 +148,28 @@ render();
     });
   });
 })();
+
+/* Tiny encouragement note changer; no tracking, no external data. */
+(function(){
+ "use strict";
+ var btn=document.getElementById("motivation-next"),target=document.getElementById("motivation-text");
+ if(!btn||!target)return;
+ var notes=["Ты можешь идти в своём темпе. Это всё ещё движение вперёд.","Ты уже справлялся со сложным раньше. И сейчас можно начать с малого.","Не знать ответ — не стыдно. Задавать вопросы — смело.","Один непростой день ничего не говорит о твоём будущем.","Поступление — не проверка твоей ценности. Это один из маршрутов.","Сравнивай себя не с чужими результатами, а с собой вчера.","Ты имеешь право передумать, уточнить и выбрать по-своему.","Можно бояться нового и всё равно понемногу двигаться к нему."],cursor=0;
+ btn.addEventListener("click",function(){
+   cursor=(cursor+1)%notes.length;
+   target.textContent=notes[cursor];
+   var paper=target.closest(".motivation-paper");
+   if(paper){
+      paper.classList.remove("note-change");
+      void paper.offsetWidth;
+      paper.classList.add("note-change");
+   }
+   if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      ["♡","✧","✳"].forEach(function(ch,i){
+        var s=document.createElement("i");s.className="vbp-spark";s.textContent=ch;s.setAttribute("aria-hidden","true");
+        s.style.setProperty("--sx",(-40+i*40)+"px");s.style.setProperty("--sy",(-30-i*13)+"px");
+        btn.appendChild(s);s.addEventListener("animationend",function(){s.remove()},{once:true});
+      });
+   }
+ });
+})();
