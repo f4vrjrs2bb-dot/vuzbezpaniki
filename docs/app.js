@@ -19,4 +19,37 @@ var quiz=document.getElementById("quiz"),next=document.getElementById("next-quiz
 ],index=0;function render(){if(index>=cases.length){quiz.innerHTML="<span class='quiz-counter'>Готово: 5 из 5</span><h2>Ты разобрался с типичными ситуациями.</h2><p>Здесь не экзамен: главное — уметь спрашивать, сверять факты и находить поддержку.</p>";next.hidden=false;next.textContent="Пройти снова";next.onclick=function(){index=0;render()};return}var c=cases[index];quiz.innerHTML="";var counter=document.createElement("span");counter.className="quiz-counter";counter.textContent="Ситуация "+(index+1)+" / "+cases.length;var title=document.createElement("h2");title.textContent=c.q;var list=document.createElement("div");list.className="choice-list";var feedback=document.createElement("div");feedback.className="feedback";feedback.hidden=true;var strong=document.createElement("b");strong.textContent="Что важно учесть";var p=document.createElement("span");feedback.append(strong,p);c.a.forEach(function(t,i){var b=document.createElement("button");b.className="choice";b.type="button";b.textContent=t;b.addEventListener("click",function(){list.querySelectorAll("button").forEach(function(x){x.classList.remove("selected")});b.classList.add("selected");p.textContent=c.f[i];feedback.hidden=false;next.hidden=false});list.appendChild(b)});quiz.append(counter,title,list,feedback);next.hidden=true;next.textContent="Следующая ситуация →";next.onclick=function(){index++;render()}}render()}
 var query=new URLSearchParams(location.search);if(query.get("type")==="story"){var kind=document.getElementById("kind");if(kind)kind.value="История студента"}
 var form=document.getElementById("question-form"),status=document.getElementById("form-status");if(form){form.addEventListener("submit",function(e){e.preventDefault();if(!form.reportValidity())return;var kind=document.getElementById("kind").value,msg=document.getElementById("message").value.trim(),reply=document.getElementById("reply").value.trim();if(msg.length<15){status.hidden=false;status.textContent="Напиши хотя бы 15 символов, чтобы мы поняли вопрос.";return}var subject="ВУЗ БЕЗ ПАНИКИ — "+kind,body="Тема: "+kind+"\n\n"+msg+(reply?"\n\nАдрес для ответа: "+reply:"");var link="mailto:morkovkkk.a@mail.ru?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);var open=document.getElementById("mail-link");open.href=link;open.hidden=false;status.hidden=false;status.textContent="Письмо подготовлено. Нажми «Открыть письмо» и отправь его в почтовом приложении. Пока ты не отправишь его там, мы ничего не получим.";open.focus()})}
+
+/* Tiny, original meme remixes; all information still lives in the educational sections. */
+var memeButton=document.getElementById("meme-next");
+if(memeButton){
+var memes=[
+{tag:"вот такие дела, собачка // remix",title:"ВОТ ТАКИЕ ДЕЛА, ПЕРВОКУРСНИК.",text:"Когда пришёл в главный корпус, а твои пары в другом конце Петербурга.",icons:["🐯","🐶"]},
+{tag:"я тебя могну // remix",title:"СЕССИЯ: «Я ТЕБЯ МОГНУ».",text:"Ты: «Окей, а где узнать правила пересдачи?»",icons:["📚","🥲"]},
+{tag:"сикс-севен // remix",title:"6–7 ВКЛАДОК. НОЛЬ ЯСНОСТИ.",text:"Когда читаешь про поступление, но забыл, что существует чек-лист.",icons:["💻","🫠"]},
+{tag:"можно. а зачем? // remix",title:"ВЫБРАТЬ ВУЗ ПО ФАСАДУ?",text:"Можно. А зачем, если можно спросить студента о реальных парах и практике?",icons:["🏛️","🤨"]}
+],memeIndex=0;
+memeButton.addEventListener("click",function(){
+memeIndex=(memeIndex+1)%memes.length;
+var m=memes[memeIndex];
+document.getElementById("meme-tag").textContent=m.tag;
+document.getElementById("meme-title").textContent=m.title;
+document.getElementById("meme-caption").textContent=m.text;
+document.getElementById("meme-emoji-a").textContent=m.icons[0];
+document.getElementById("meme-emoji-b").textContent=m.icons[1];
+document.getElementById("meme-count").textContent=String(memeIndex+1).padStart(2,"0")+" / 04";
+});
+}
+var antiPanic=document.getElementById("anti-panic"),antiPanicText=document.getElementById("anti-panic-text");
+if(antiPanic&&antiPanicText){
+var tips=[
+"Шаг 1: не выбирай из сотни вузов. Сначала найди 2–3 программы, которые тебе интересны.",
+"Не понимаешь, что делать дальше? Открой маршрут поступления и отметь один следующий шаг.",
+"Один отзыв — это один опыт. Спрашивай студентов той же программы и курса.",
+"Страшно пересдавать? Узнай правила своего вуза: факты полезнее слухов.",
+"Не знаешь, сколько всё стоит? Начни со своего бюджета, а не чужих историй."
+],tipIndex=-1;
+antiPanic.addEventListener("click",function(){tipIndex=(tipIndex+1)%tips.length;antiPanicText.textContent=tips[tipIndex];antiPanicText.hidden=false});
+}
+
 })();
