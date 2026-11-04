@@ -300,3 +300,90 @@ h1{letter-spacing:-.07em}h2{letter-spacing:-.06em}
 .xray-end .button-dark{margin-top:10px}
 @media(max-width:930px){.xray-layout{grid-template-columns:1fr}.xray-basket{position:static}.xray-extras{grid-template-columns:1fr}}
 @media(max-width:600px){.xray-workspace,.xray-basket{padding:22px}.xray-topics{gap:7px}.xray-topic{font-size:12px;padding:10px 12px}.xray-option{font-size:14px;padding:14px}.xray-basket h3{font-size:30px}.xray-explainer h2{font-size:36px}}
+
+
+/* 2026-11-05: readable mobile hero + playful, gentle motion.
+   Placed after earlier theme overrides so mobile constraints win. */
+.art {isolation:isolate}
+.art .ring{z-index:-1;pointer-events:none}
+.art-paper{z-index:1;animation:vbpFloatPaper 6.5s ease-in-out infinite;transform-origin:center center;will-change:transform}
+.orbit-note{animation:vbpWiggle 5.3s ease-in-out infinite;transform-origin:center}
+@keyframes vbpFloatPaper{
+  0%,100%{transform:rotate(-3.5deg) translateY(0)}
+  50%{transform:rotate(-2deg) translateY(-7px)}
+}
+@keyframes vbpWiggle{
+  0%,100%{transform:rotate(-12deg)}
+  50%{transform:rotate(-6deg) translateY(-4px)}
+}
+.card .arr,.realtalk-card,.meme26-card,.button,.button-light,.button-dark,.menu-toggle,.filter{
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,border-color .28s ease,background-color .2s ease
+}
+.card:hover .arr,.card:focus-visible .arr{transform:translate(3px,-3px) rotate(7deg)}
+.meme26-card:hover{transform:translateY(-4px);box-shadow:0 16px 35px rgba(62,50,123,.09)}
+.menu-toggle[aria-expanded="true"] span{display:inline-block;transform:rotate(90deg)}
+.menu-toggle span{display:inline-block;transition:transform .3s ease}
+.anti-panic{position:relative;isolation:isolate;transition:transform .22s ease,box-shadow .22s ease}
+.anti-panic:hover{transform:rotate(-2deg) translateY(-2px)}
+.anti-panic:active{transform:scale(.96) rotate(1deg)}
+.anti-panic-text:not([hidden]){animation:vbpTipIn .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vbpTipIn{0%{opacity:0;transform:translateY(8px) scale(.97)}100%{opacity:1;transform:none}}
+.vbp-spark{position:absolute;left:50%;top:50%;font-size:15px;line-height:1;font-style:normal;color:var(--purple);pointer-events:none;z-index:3;animation:vbpSparkFly .78s ease-out forwards}
+@keyframes vbpSparkFly{0%{opacity:1;transform:translate(-50%,-50%) scale(.4) rotate(0)}100%{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(1.05) rotate(150deg)}}
+
+@media(max-width:790px){
+  /* The old fixed 355/320px canvas hid entire sentences on phones. */
+  .art{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    width:100%;height:auto;min-height:0;padding:38px 23px 27px;gap:19px;
+    overflow:hidden; border-radius:30px;
+  }
+  .art-paper{
+    position:relative;order:1;max-width:100%;width:100%;
+    padding:28px 24px 21px;
+    transform:rotate(-1deg);
+    animation:vbpFloatPaperMobile 6.5s ease-in-out infinite;
+  }
+  .art-paper small{display:block;font-size:11px;line-height:1.5;letter-spacing:.1em;overflow-wrap:anywhere}
+  .art-paper h2{font-size:clamp(29px,7.5vw,39px);line-height:1.13;letter-spacing:-.06em;margin:22px 0 18px;overflow-wrap:break-word}
+  .art-paper p{font-size:clamp(15px,3.8vw,17px);line-height:1.53;margin:0 0 4px;overflow-wrap:break-word}
+  .sticker{
+    position:relative;display:table;right:auto;bottom:auto;
+    margin:17px 0 0 auto;padding:10px 14px;
+    width:max-content;max-width:100%;font-size:12px;line-height:1.2;
+    transform:rotate(3deg);white-space:normal;
+  }
+  .orbit-note{
+    position:relative;order:2;left:auto;bottom:auto;right:auto;top:auto;
+    align-self:flex-start;margin:0 0 0 5px;padding:10px 15px;
+    transform:rotate(-7deg);font-size:11px;line-height:1.15;
+  }
+  .ring{right:-165px;top:-170px}
+  @keyframes vbpFloatPaperMobile{
+    0%,100%{transform:rotate(-1deg) translateY(0)}
+    50%{transform:rotate(-.3deg) translateY(-4px)}
+  }
+  .hero-grid>*{min-width:0}
+}
+@media(max-width:500px){
+  .art{height:auto;min-height:0;padding:33px 18px 24px;gap:15px}
+  .art-paper{max-width:100%;padding:25px 20px 21px}
+  .art-paper h2{font-size:clamp(28px,8vw,35px);margin:18px 0 15px}
+  .art-paper p{font-size:15.5px;line-height:1.55}
+  .orbit-note{margin-left:4px}
+  .hero{padding-bottom:40px}
+  .section-head h2{overflow-wrap:break-word}
+}
+@media(max-width:360px){
+  .art{padding:27px 15px 22px}
+  .art-paper{padding:23px 17px 20px}
+  .art-paper h2{font-size:27px}
+  .art-paper p{font-size:15px}
+  .art-paper small{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .art-paper,.orbit-note,.vbp-spark,.anti-panic-text:not([hidden]){animation:none!important}
+  .art-paper{transform:rotate(-1deg)}
+  .orbit-note{transform:rotate(-7deg)}
+  .card .arr,.realtalk-card,.meme26-card,.button,.button-light,.button-dark,.menu-toggle,.filter{transition:none!important}
+}

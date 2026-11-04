@@ -128,3 +128,23 @@ document.getElementById("xray-random").addEventListener("click",function(){chose
 document.getElementById("xray-copy").addEventListener("click",async function(){var list=records.filter(function(r){return chosen.has(r.id)});if(!list.length){status("Сначала выбери хотя бы один вопрос.");return}var output="МОИ ВОПРОСЫ СТУДЕНТУ — ВУЗ БЕЗ ПАНИКИ\n\n"+list.map(function(r,i){return(i+1)+". "+r.text}).join("\n")+"\n\nПроверяй факты в официальных источниках.";try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("Clipboard not supported");await navigator.clipboard.writeText(output);status("Список скопирован — можешь отправить его студенту.")}catch(e){var box=document.createElement("textarea");box.value=output;box.className="xray-copy-fallback";box.setAttribute("aria-label","Скопируй готовый список");selectedEl.prepend(box);box.focus();box.select();status("Не удалось скопировать автоматически. Выделенный текст можно скопировать вручную.")}});
 render();
 })();
+
+/* Small celebratory burst, triggered only by user interaction. */
+(function(){
+  "use strict";
+  var button=document.getElementById("anti-panic");
+  if(!button||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var vectors=[[0,-45],[32,-31],[50,-6],[35,28],[0,41],[-35,28],[-50,-5],[-31,-34]];
+  button.addEventListener("click",function(){
+    vectors.forEach(function(v,i){
+      var star=document.createElement("i");
+      star.className="vbp-spark";
+      star.setAttribute("aria-hidden","true");
+      star.textContent=i%2?"✦":"✳";
+      star.style.setProperty("--sx",v[0]+"px");
+      star.style.setProperty("--sy",v[1]+"px");
+      button.appendChild(star);
+      star.addEventListener("animationend",function(){star.remove()},{once:true});
+    });
+  });
+})();
