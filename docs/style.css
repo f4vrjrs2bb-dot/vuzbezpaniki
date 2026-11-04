@@ -190,3 +190,34 @@ h1{letter-spacing:-.07em}h2{letter-spacing:-.06em}
 @media(max-width:900px){.realtalk-layout{grid-template-columns:1fr}.realtalk-side{min-height:310px;gap:45px}}
 @media(max-width:600px){.realtalk-grid{grid-template-columns:1fr}.realtalk-card{min-height:210px;padding:22px 22px 50px}.realtalk-side{padding:25px;min-height:340px}.realtalk-side h3{font-size:clamp(30px,8vw,42px)}.realtalk-side-body{max-width:100%}.realtalk-sticker{margin-bottom:17px}}
 @media(prefers-reduced-motion:reduce){.realtalk-card,.realtalk-side{transition:none!important}}
+
+/* Searchable university directory: compact, accessible, soft visual language */
+.catalog-intro{margin-bottom:30px;border:1px solid var(--border);padding:30px 34px}
+.catalog-intro .eyebrow{margin-bottom:13px}.catalog-intro h2{font-size:clamp(27px,3vw,41px);line-height:1.12;margin:0 0 14px}
+.catalog-intro p{font-size:15px;max-width:950px;line-height:1.65;color:#59556B;margin:0}
+.catalog-intro a{color:var(--purple);font-weight:800}
+.catalog-control{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:15px}
+.catalog-control label{font-size:14px}.catalog-control .search{min-width:250px;flex:1;max-width:580px}
+.catalog-filters{gap:9px;margin-bottom:16px}.catalog-note{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 22px}
+.uni-catalog-grid{align-items:stretch;gap:15px}
+.uni-catalog{min-width:0;display:flex;flex-direction:column;border:1px solid var(--border);border-radius:22px;box-shadow:0 9px 24px rgba(34,34,56,.045);padding:26px;background:#fff}
+.uni-catalog h3{font-size:clamp(19px,1.7vw,24px);line-height:1.24;margin:20px 0 9px;letter-spacing:-.04em;overflow-wrap:anywhere}
+.uni-top{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.uni-num{font-size:13px;font-weight:850;color:var(--purple)}
+.uni-type{background:#F3EFF9;color:#645B7B;border-radius:100px;padding:7px 11px;font-size:11px;font-weight:750;text-align:right}
+.uni-summary{color:#626070;font-size:14px;margin:0 0 20px;line-height:1.5}
+.uni-questions{background:#F8F6FC;border-radius:13px;margin-top:auto;padding:0 15px}
+.uni-questions summary{list-style:none;cursor:pointer;font-size:14px;font-weight:770;padding:14px 20px 14px 0;position:relative}
+.uni-questions summary::-webkit-details-marker{display:none}
+.uni-questions summary:after{content:"+";position:absolute;right:0;top:12px;color:var(--purple);font-size:19px;font-weight:600}
+.uni-questions[open] summary:after{content:"−"}
+.uni-questions ul{margin:0;padding:0 0 17px 18px;color:#575466;font-size:14px;line-height:1.6}
+.uni-questions li{margin:4px 0}
+.uni-catalog .uni-bottom{margin-top:18px;font-size:13px;gap:14px}
+.uni-catalog .uni-bottom a{line-height:1.4;font-weight:790;color:var(--purple);font-size:13px}
+.catalog-nearby{margin:28px 0 18px;background:#FFF4E7}
+.catalog-nearby h3{margin:14px 0 10px}
+.catalog-nearby p{font-size:15px;color:#545063}
+.catalog-nearby a{font-weight:800;color:var(--purple)}
+@media(max-width:790px){.catalog-intro{padding:24px}.catalog-control{display:grid;grid-template-columns:1fr;align-items:stretch}.catalog-control .search{min-width:0;max-width:none;width:100%}.uni-catalog{padding:22px}.uni-catalog-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.catalog-filters{gap:7px}.catalog-filters .filter{font-size:12px;padding:10px 12px}.uni-catalog h3{font-size:21px}}
