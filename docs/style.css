@@ -488,3 +488,7 @@ h1{letter-spacing:-.07em}h2{letter-spacing:-.06em}
  .soft-scribble,.soft-cat,.support-doodles span,.support-floating-heart,.support-spark,.motivation-deco,.motivation-paper,.support-note-spark,.support-big-heart{animation:none!important}
  .motivation-paper{transform:none!important}
 }
+
+/* Minimal brand mark: no tilt or decorative logo animation */
+.brand-mark.brand-logo{width:42px;height:42px;border-radius:12px!important}
+.brand:hover .brand-mark.brand-logo{transform:translateY(-1px)!important;transition:transform .2s ease!important}
