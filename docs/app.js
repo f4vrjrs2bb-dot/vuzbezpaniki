@@ -35,3 +35,96 @@ antiPanic.addEventListener("click",function(){tipIndex=(tipIndex+1)%tips.length;
 }
 
 })();
+
+
+/* Short original text remixes of 2026 meme formats, no third-party images. */
+(function(){
+var more=document.getElementById("more-memes"),grid=document.getElementById("meme26-grid");if(!more||!grid)return;
+var data=[{"m":"МОЖНО. А ЗАЧЕМ?","q":"Выбирать университет по самому красивому корпусу?","r":"Можно. А зачем, если есть учебный план?","url":"./vuzy.html","label":"выбор"},{"m":"ВОТ ТАКИЕ ДЕЛА, СОБАЧКА","q":"Думал, все занятия в главном корпусе.","r":"А твой корпус вообще в другом районе.","url":"./vuzy.html","label":"питер"},{"m":"Я ТЕБЯ МОГНУ","q":"Сессия смотрит на тебя в конце семестра.","r":"Ты уже открыл правила пересдачи. Без паники.","url":"./bez-filtrov.html","label":"сессия"},{"m":"НИШЕВОСТЬ","q":"Планировал выбрать вуз за десять минут.","r":"Через два часа сравниваешь программы по практикам.","url":"./rentgen.html","label":"поиск"},{"m":"ВЕРНИТЕ МОЙ 2016-Й","q":"Когда хочется расписание, которое не меняется.","r":"Проверяем актуальную версию, а не пересланный скрин.","url":"./perviy-kurs.html","label":"расписание"},{"m":"КОТОСТЬ","q":"Когда нашёл старшекурсника своего направления.","r":"Наконец-то вопросы по делу, а не реклама.","url":"./rentgen.html","label":"студенты"},{"m":"СИКС-СЕВЕН","q":"У тебя открыто шесть или семь вкладок с правилами.","r":"А нужен один понятный список шагов.","url":"./postuplenie.html","label":"дедлайны"},{"m":"ВОЗДУХАН","q":"Пришёл на день открытых дверей за конкретикой.","r":"А тебе уже сорок минут рассказывают про атмосферу.","url":"./rentgen.html","label":"опросник"}];
+var current=0;
+function paint(){
+grid.textContent="";
+data.slice(current,current+4).forEach(function(item,index){
+ var card=document.createElement("article");card.className="meme26-card";
+ var tag=document.createElement("span");tag.className="meme26-label";tag.textContent=item.label+" / "+String(current+index+1).padStart(2,"0");
+ var h=document.createElement("h3");h.textContent=item.m;
+ var q=document.createElement("p");q.className="meme26-question";q.textContent=item.q;
+ var answer=document.createElement("p");answer.className="meme26-reply";answer.textContent=item.r;
+ var a=document.createElement("a");a.href=item.url;a.textContent="Разобрать тему ↗";
+ card.append(tag,h,q,answer,a);grid.appendChild(card)
+})}
+more.addEventListener("click",function(){current=current?0:4;paint()});
+})();
+(function(){
+var topicsEl=document.getElementById("xray-topics"),optionsEl=document.getElementById("xray-options"),selectedEl=document.getElementById("xray-selected");
+if(!topicsEl||!optionsEl||!selectedEl)return;
+var groups=[
+["Учёба и нагрузка",[
+"Сколько часов в неделю у вас реально уходит на учёбу вне пар?",
+"Какая дисциплина неожиданно оказалась самой сложной?",
+"Сколько групповых проектов бывает за семестр?",
+"На каких занятиях присутствие действительно обязательно?",
+"Как часто меняется расписание и корпуса?",
+"Где брать материалы, если пропустил лекцию?",
+"Какой навык пришлось учить самостоятельно?",
+"Что ты сделал бы иначе в свой первый семестр?"]],
+["Преподаватели и сессия",[
+"Какие требования преподаватели обычно объясняют не сразу?",
+"Как в вашей программе устроены пересдачи?",
+"На чём чаще всего заваливаются новички?",
+"Можно ли прийти на консультацию и получить реальный ответ?",
+"Есть ли объективные критерии для проектов и работ?",
+"Как решают конфликт из-за оценки?",
+"Как выглядит реальная подготовка к экзаменам?",
+"Как найти контакт куратора, если возникла проблема?"]],
+["Общежитие и быт",[
+"В каком именно общежитии живут студенты вашей программы?",
+"Сколько времени занимает дорога до корпуса?",
+"Какие бытовые вещи лучше привезти с собой?",
+"Какие правила посещения гостей и тишины?",
+"Что происходит, если сосед по комнате мешает учиться?",
+"Как решают вопросы с бытовыми поломками?",
+"Какие неожиданные расходы появляются при заселении?",
+"Насколько реально получить место при поступлении?"]],
+["Деньги и подработка",[
+"Сколько лично ты тратишь на питание и транспорт за месяц?",
+"Есть ли неожиданные учебные расходы?",
+"Реально ли совмещать вашу программу с подработкой?",
+"В какие дни расписание особенно плотное?",
+"Какие студенческие скидки ты действительно используешь?",
+"Какой обязательный расход ты недооценил?",
+"Что стоит проверить в договоре платного обучения?",
+"Какая финансовая привычка помогла в первый год?"]],
+["Люди и атмосфера",[
+"Легко ли познакомиться с кем-то вне своей группы?",
+"Как помогают первокурсникам привыкнуть к вузу?",
+"Что делают студенческие клубы на практике?",
+"Можно ли отказаться от мероприятий без давления?",
+"Кто помогает решать конфликты в группе?",
+"Где собираются студенты между парами?",
+"Что тебе нравится в атмосфере, а что раздражает?",
+"Стал бы ты выбирать эту программу ещё раз — и почему?"]],
+["Практика и будущее",[
+"Помогает ли вуз искать место практики?",
+"Какие реальные проекты ты можешь показать в портфолио?",
+"Насколько связаны предметы с работой по профессии?",
+"Какие дополнительные навыки пришлось изучить самому?",
+"Приходят ли практики из индустрии на занятия?",
+"Получают ли студенты обратную связь по стажировкам?",
+"Есть ли помощь с резюме или карьерой?",
+"Что ты узнал о профессии только после поступления?"]]
+];
+var records=[],active=0,chosen=new Set(),key="vuzbezpaniki-xray-v1";
+groups.forEach(function(g,i){g[1].forEach(function(q,j){records.push({id:i+"-"+j,text:q,group:g[0]})})});
+try{var found=JSON.parse(localStorage.getItem(key)||"[]");if(Array.isArray(found))found.forEach(function(id){if(records.some(function(r){return r.id===id}))chosen.add(id)})}catch(e){}
+function save(){try{localStorage.setItem(key,JSON.stringify([...chosen]))}catch(e){}}
+function drawTopics(){topicsEl.textContent="";groups.forEach(function(g,i){var b=document.createElement("button");b.type="button";b.className="xray-topic";b.setAttribute("aria-pressed",String(i===active));b.textContent=g[0];b.addEventListener("click",function(){active=i;render()});topicsEl.appendChild(b)})}
+function drawOptions(){optionsEl.textContent="";document.getElementById("xray-current").textContent=groups[active][0];records.filter(function(r){return r.id.startsWith(active+"-")}).forEach(function(r){var b=document.createElement("button");b.type="button";b.className="xray-option";b.setAttribute("aria-pressed",String(chosen.has(r.id)));var label=document.createElement("span");label.textContent=r.text;var mark=document.createElement("span");mark.className="xray-plus";mark.textContent=chosen.has(r.id)?"✓":"+";b.append(label,mark);b.addEventListener("click",function(){if(chosen.has(r.id))chosen.delete(r.id);else chosen.add(r.id);save();render()});optionsEl.appendChild(b)})}
+function drawSelected(){selectedEl.textContent="";var list=records.filter(function(r){return chosen.has(r.id)});document.getElementById("xray-total").textContent="Выбрано: "+list.length;document.getElementById("xray-count").textContent=list.length+" вопросов";if(!list.length){var emp=document.createElement("div");emp.className="xray-placeholder";emp.textContent="Пока пусто. Выбери вопросы слева — они появятся здесь.";selectedEl.appendChild(emp)}else{list.forEach(function(r,i){var el=document.createElement("div");el.className="xray-selected-row";var n=document.createElement("span");n.textContent=String(i+1).padStart(2,"0");var text=document.createElement("p");text.textContent=r.text;var del=document.createElement("button");del.type="button";del.textContent="×";del.setAttribute("aria-label","Убрать вопрос: "+r.text);del.addEventListener("click",function(){chosen.delete(r.id);save();render()});el.append(n,text,del);selectedEl.appendChild(el)})}}
+function render(){drawTopics();drawOptions();drawSelected()}
+function status(msg){var el=document.getElementById("xray-status");if(el)el.textContent=msg}
+document.getElementById("xray-clear").addEventListener("click",function(){chosen.clear();save();render();status("Список очищен")});
+document.getElementById("xray-random").addEventListener("click",function(){chosen.clear();groups.forEach(function(g,i){var j=Math.floor(Math.random()*g[1].length);chosen.add(i+"-"+j)});save();render();status("Добавлено шесть вопросов — по одному из каждой темы")});
+document.getElementById("xray-copy").addEventListener("click",async function(){var list=records.filter(function(r){return chosen.has(r.id)});if(!list.length){status("Сначала выбери хотя бы один вопрос.");return}var output="МОИ ВОПРОСЫ СТУДЕНТУ — ВУЗ БЕЗ ПАНИКИ\n\n"+list.map(function(r,i){return(i+1)+". "+r.text}).join("\n")+"\n\nПроверяй факты в официальных источниках.";try{if(!navigator.clipboard||!navigator.clipboard.writeText)throw Error("Clipboard not supported");await navigator.clipboard.writeText(output);status("Список скопирован — можешь отправить его студенту.")}catch(e){var box=document.createElement("textarea");box.value=output;box.className="xray-copy-fallback";box.setAttribute("aria-label","Скопируй готовый список");selectedEl.prepend(box);box.focus();box.select();status("Не удалось скопировать автоматически. Выделенный текст можно скопировать вручную.")}});
+render();
+})();
